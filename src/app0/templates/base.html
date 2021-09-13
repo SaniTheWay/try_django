@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Base.html is here</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body style="background-color: bisque;">
+        {% include 'nav.html' %}
+
+    <!-- 
+            to make the template and to make it more accessible to all 
+        other pages, we are using this. 
+        By using this, we can have the whole body as it is, but the content
+        inside the block will replaced by that page content 
+    --><center>
+        {% block content %}
+        <!-- replace me -->
+        {% endblock %}
+    </center>
+        <!-- inside here, 
+                'block' is of Django
+            &   'content' is the variable name that we have to replace 
+        -->        
+    </body>
+</html>

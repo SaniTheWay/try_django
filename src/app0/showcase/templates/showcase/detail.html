@@ -1,0 +1,53 @@
+{%extends 'base.html' %}
+<!-- {% import 'showcase'} -->
+{%block content %} 
+<h1>Showcasing</h1>
+<div class="container">
+<div class="row">
+{%for i in all_projects %}
+<div class="col-sm-3">
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{% block card_title %}
+                    <!-- replace me --><br>
+                    Project Title: {{ i.title }}
+                    {% endblock %}</h5>
+                <p class="card-text">{% block card_description %}
+                    <!-- replace me --><br>
+                    Project description: {{ i.description }}
+
+                    {% endblock %}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">{% block card_price %}
+                <!-- replace me --><br>
+                Project price: {{ i.price }}
+
+                {% endblock %}</li>
+            <li class="list-group-item">{% block card_active %}
+                <!-- replace me --><br>
+                Project active: {{ i.active }}
+
+                {% endblock %}</li>
+            <li class="list-group-item">{% block card_summary %}
+                <!-- replace me --><br>
+                Project summary: {{ i.summary }}
+
+                {% endblock %}</li>
+            </ul>
+            <div class="card-body">
+            <a href="#" class="card-link">{% block card_featured %}
+                <!-- replace me --><br>
+                Project featured: {{ i.featured }}
+
+                {% endblock %}</a>
+            <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
+
+  {% endfor %}
+</div>
+</div>
+{%endblock content%} 

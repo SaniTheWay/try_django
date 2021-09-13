@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<!-- adding the base.html and also nav.html to the home/..etc pages -->
+{% block content %}
+    <h1>About Page</h1>
+    <p>added template- About.html</p>
+    <p> User: </p>
+    {{request.user }}<br>
+    Rendering Context: <ul><li>User: {{ request.user }}</li>
+        <li>{{ my_name }}</li>
+        <li>{{ my_number }}</li>
+        <li>{{ my_data }}</li>
+        <li>{{ my_list }}</li>
+
+    </ul>
+    List by using Template For loop
+<ul>
+    {% for i in my_list %}
+            <li> {{ i }} </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
