@@ -18,7 +18,7 @@ from django.urls import path
 # from pages import views
 # either doing in this way| we can use the below one:
 from pages.views import home_view, projects_view, about_view
-from showcase.views import showcase_detail_view, show_form_view #jst added the another app view 
+from showcase.views import showcase_detail_view, show_form_view #show_form_view #jst added the another app view 
 
 
 urlpatterns = [
@@ -29,6 +29,7 @@ urlpatterns = [
     path('contacts/',  about_view,),
     path('showcase/',  showcase_detail_view,),
     path('create/',  show_form_view,),
+
 
 
 ]

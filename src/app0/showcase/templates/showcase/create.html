@@ -1,13 +1,29 @@
 {% extends 'base.html' %}
 <!-- adding the base.html and also nav.html to the create.html/..etc pages -->
 {% block content %}
+<!-- Here is an important difference between the model fields and form fields.
+
+Model fields know how to represent themselves in the database whereas form fields do not. -->
+<!-- <form action="." method="POST"> {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Create"/>
+
+</form> -->
+<!-- ------------------------------------TESTING----------------------------------------- -->
 
 <form method="POST">
+  {% csrf_token %} {{form}}
+  <input type="submit" name="your_name" value="Submit It!!" />
+</form>
+
+<!-- ------------------------------------------------------------------------------------ -->
+<!-- <form action="." method="POST"> {% csrf_token %}
+
     <input type="text" name = "title" placeholder="Project Title">
     <input type="submit" value="Create" />
 
 
-</form>
+</form> -->
 
 <!-- 
     <form method="POST"> {% csrf_token %}
@@ -20,7 +36,5 @@
 
     <input type="submit" value='Create' />
 </form> -->
-
-
 
 {% endblock %}
