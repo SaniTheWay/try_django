@@ -24,6 +24,7 @@ from showcase.views import showcase_detail_view, show_form_view #show_form_view 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='landingPage'),
+    path('dashboard/', home_view,),
     path('projects/', projects_view,),
     path('about/',  about_view,),
     path('contacts/',  about_view,),

@@ -10,14 +10,15 @@ Model fields know how to represent themselves in the database whereas form field
 
 </form> -->
 <!-- ------------------------------------TESTING----------------------------------------- -->
+<h2>Create your Project</h2><br>
 
-<form method="POST">
-  {% csrf_token %} {{form}}
-  <input type="submit" name="your_name" value="Submit It!!" />
-</form>
+    <form method="POST">
+      {% csrf_token %} {{form}}
+      <input type="submit" name="your_name" value="Submit It!!" />
+    </form>
 
-<!-- ------------------------------------------------------------------------------------ -->
-<!-- <form action="." method="POST"> {% csrf_token %}
+    <!-- ------------------------------------------------------------------------------------ -->
+    <!-- <form action="." method="POST"> {% csrf_token %}
 
     <input type="text" name = "title" placeholder="Project Title">
     <input type="submit" value="Create" />
@@ -25,7 +26,7 @@ Model fields know how to represent themselves in the database whereas form field
 
 </form> -->
 
-<!-- 
+    <!-- 
     <form method="POST"> {% csrf_token %}
     {{ form.as_p }} 
     
@@ -37,4 +38,6 @@ Model fields know how to represent themselves in the database whereas form field
     <input type="submit" value='Create' />
 </form> -->
 
-{% endblock %}
+    {% endblock %}
+  </h1>
+</h1>

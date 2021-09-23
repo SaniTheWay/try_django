@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 # importing showcase form to add into the view
-from .forms import RawShowcaseForm, ShowcaseForm, TestForm
+from .forms import RawShowcaseForm, ShowcaseForm
 
 # Showcase is a class in models module
 from .models import Showcase

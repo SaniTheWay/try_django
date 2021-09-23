@@ -1,1 +1,2 @@
 Django 3.2 resource for file-types : https://docs.djangoproject.com/en/3.2/ref/models/fields/#field-types
+**Static Folder, STATIC_URL, STATICFILES_DIR, ... : https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-STATICFILES_DIRS
