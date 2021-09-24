@@ -26,9 +26,30 @@
       body {
         height: 100%;
       }
+      .navbar li
+      {
+        margin-left: 0px;
+        padding-left: 5%;
+      }
+      {% comment %} .navbar li:hover{
+        font-size: 20px;
+        transition: .3s;
+      } {% endcomment %}
       #sdbar {
-        margin-top: 0px;
-        /* height: 1000px;; */
+        margin-right: 10px;
+        {% comment %} no need of {% load static %}  beacuse using URLs{% endcomment %}
+        background: url("/static/img/projectyverse_sdbarimg.png") 0% 100% no-repeat;
+        width: 20%;
+        height:91%;
+        border: 0.5px solid darkgrey;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+        z-index: 1; /* Stay on top */
+        top: 1; /* Stay at the top */
+        right: 0;
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 20px;
       }
       #ctrcontent {
         padding-left: 5%;
@@ -37,7 +58,7 @@
   </head>
   <body class="container-fluid" style="background-color: bisque">
     {% include 'nav.html' %}
-    <br />
+    <div style="height: 5px"></div>
     <!-- 
             to make the template and to make it more accessible to all 
         other pages, we are using this. 
@@ -46,15 +67,11 @@
     -->
     <div class="row" style="height=100px">
       <div class="col-sm-9" id="ctrcontent">
-        {% comment %}
-        <center>
-          {% endcomment %} {% block content %}
-          <!-- replace me -->
-          {% endblock %} {% comment %}
-        </center>
-        {% endcomment %}
+        {% block content %}
+        <!-- replace me -->
+        {% endblock %}
       </div>
-      <div class="col-sm-3 bg-dark text-light" id="sdbar">
+      <div class="col-sm-3 text-light" id="sdbar">
         This Content will be based on Tabs that will open. Like this is
         "{{request.get_full_path}}" page
       </div>
