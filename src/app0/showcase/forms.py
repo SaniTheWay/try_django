@@ -12,8 +12,7 @@ class ShowcaseForm(forms.ModelForm):
         fields = [
             'title',
             'description',
-            'price',
-            'summary',
+            # 'summary',
             'active',
             'featured'
         ]
@@ -22,11 +21,6 @@ class ShowcaseForm(forms.ModelForm):
 class RawShowcaseForm(forms.Form):
     title       =forms.CharField()
     description =forms.CharField()
-    # prices      =forms.DecimalField()    
-    summary     =forms.CharField()
-    # active      =forms.ChoiceField()
+    active      =forms.ChoiceField(required=False)
     featured    =forms.BooleanField()
-
-# # PRACTICE FORM
-# class TestForm(forms.Form):
-#     testname = forms.CharField(label="Your Name", max_length=100)
+    project_img =forms.ImageField()

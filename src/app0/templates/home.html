@@ -2,12 +2,13 @@
 <!-- adding the base.html and also nav.html to the home/..etc pages -->
 {% block content %}
 
-        <h1>Hello WORLD!</h1>
-        <p>added template- Home.html</p>
-        <p> User: </p>
-        {{request.user }}
+<h1>Hello WORLD!</h1>
+<p>added template- Home.html</p>
+User Name:
+<h3>{{request.user }}</h3>
+
 {% endblock %}
-    <!-- {% block content2 %}
+<!-- {% block content2 %}
 
             <h1>Hello WORLD!</h1>
             

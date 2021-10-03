@@ -24,7 +24,6 @@
     ></script>
     <style>
       body {
-        height: 100%;
       }
       .navbar li
       {
@@ -52,7 +51,7 @@
         padding-top: 20px;
       }
       #ctrcontent {
-        padding-left: 5%;
+
       }
     </style>
   </head>
@@ -65,16 +64,28 @@
         By using this, we can have the whole body as it is, but the content
         inside the block will replaced by that page content 
     -->
-    <div class="row" style="height=100px">
-      <div class="col-sm-9" id="ctrcontent">
+    <div class="row" style="">
+      <div
+        class="col-sm-9"
+        id="ctrcontent"
+        style="
+          background: #ccccff;
+          margin-left: 15%;
+          margin-right: 15%;
+          border-radius: 10px;
+          padding-bottom: 10px;
+        "
+      >
         {% block content %}
         <!-- replace me -->
         {% endblock %}
       </div>
+      {% comment %}
       <div class="col-sm-3 text-light" id="sdbar">
         This Content will be based on Tabs that will open. Like this is
         "{{request.get_full_path}}" page
       </div>
+      {% endcomment %}
       <!-- inside here, 
                 'block' is of Django
             &   'content' is the variable name that we have to replace 

@@ -13,7 +13,7 @@ Model fields know how to represent themselves in the database whereas form field
 <h2>Create your Project</h2><br>
 
     <form method="POST">
-      {% csrf_token %} {{form}}
+      {% csrf_token %} {{form.as_p}}
       <input type="submit" name="your_name" value="Submit It!!" />
     </form>
 
@@ -26,17 +26,6 @@ Model fields know how to represent themselves in the database whereas form field
 
 </form> -->
 
-    <!-- 
-    <form method="POST"> {% csrf_token %}
-    {{ form.as_p }} 
-    
-        It is a biult-in method uses the form 
-        that we are passing in context into a HMTL form 
-        rendered out with our para tag
-   
-
-    <input type="submit" value='Create' />
-</form> -->
 
     {% endblock %}
   </h1>

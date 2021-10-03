@@ -31,7 +31,8 @@ def showcase_detail_view(request):
     # return render(request, "template", {context})
     return render(request, "showcase/detail.html", context)
 
-    # Creating the View - for Forms
+# ----------------------------------------------------------------------------------------
+# Creating the View - for Forms
 
 # this will just give us a url (wala khel) : It used in RAW HTMLs
 
@@ -44,11 +45,12 @@ def show_form_view(request):
     if request.method =="POST": #by using this, we validate if the request is a "Post" request
         # <<NOT CLEAR>>to make this form connected to the DB we have to put 
         #  <<NOT CLEAR>>"request.POST" as parameter of "RawShowcaseForm()"
-        myform = RawShowcaseForm(request.POST)
+        myform = RawShowcaseForm(request.POST, request.FILES)
         if myform.is_valid():
             # Now the date is good
             print(myform.cleaned_data) #.cleaned_data - only shows the valid data
             # saving the object to the DB
+            myform.save()
             Showcase.objects.create(**myform.cleaned_data) #made "myform.cleaned_data" as an argument for the 'create()' mehthod
             myform = RawShowcaseForm()
 
@@ -58,34 +60,6 @@ def show_form_view(request):
         'form':myform
     }
     return render(request, 'showcase/create.html', context)
-
-# -----------------------------------------------------------------------------------------------------------
-# practice forms
-# def testingformview(request):
-#     # if request.method == "POST":
-#     #     form = TestForm(request.POST)
-#     #     if form.is_valid():
-#     #         return HttpResponseRedirect('/showcase/')
-#     # else:
-#     # form = TestForm()q
-#     context= {
-#         'form': TestForm(request.GET)
-#         }
-#     return render(request, 'showcase/create.html', context) 
-# -----------------------------------------------------------------------------------------------------------
-
-# def show_form_view(request):
-
-#     print(request.GET)
-#     print(request.POST)
-#     # validating the data:
-#     if request.method == "POST":
-#         my_new_title = request.POST.get('title')
-#         print(my_new_title)
-#         #Showcase.objects.create(myform.cleaned_data) to create the object- really
-#     context = {}
-#     return render(request, 'showcase/create.html', context)
-
 
 # def show_form_view(request):
 #     form = ShowcaseForm(request.POST or None)

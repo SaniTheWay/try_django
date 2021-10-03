@@ -8,10 +8,8 @@ class Showcase(models.Model):
     YES="ys"
     NO="no"
     IDEA="ID"
-
     title = models.CharField(max_length=120,blank=True) #maxlength *required
     description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(decimal_places=2, max_digits=1000, blank=True, null=True)
     active = models.CharField(
                                 max_length=2, 
                                 choices=[
@@ -21,5 +19,5 @@ class Showcase(models.Model):
                                         ], 
                                 #default=NO
                              )
-    summary = models.TextField(blank=True, null=True)
     featured = models.BooleanField(blank=True, null=True)
+    project_img = models.ImageField(upload_to='static/img/')
