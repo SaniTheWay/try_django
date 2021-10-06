@@ -7,11 +7,14 @@
     {%for i in all_projects %}
     <div class="col-sm-3">
       <div class="card" style="width: 18rem">
+        {% load static %}
+        <img src="{% get_media_prefix %}{{i.project_img}}" />
+
         <div class="card-body">
           <h5 class="card-title">
             {% block card_title %}
             <!-- replace me --><br />
-            Project Title: {{ i.title }} {% endblock %}
+            Project Title: {{ i.title }}{%endblock %}
           </h5>
           <p class="card-text">
             {% block card_description %}
@@ -32,7 +35,7 @@
             <!-- replace me --><br />
             Project featured: {{ i.featured }} {% endblock %}</a
           >
-          <a href="#" class="card-link">Another link</a>
+          <a href="{{i.project_link}}" class="card-link">Project link</a>
         </div>
       </div>
     </div>

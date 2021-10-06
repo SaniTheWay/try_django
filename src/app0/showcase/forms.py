@@ -14,7 +14,9 @@ class ShowcaseForm(forms.ModelForm):
             'description',
             # 'summary',
             'active',
-            'featured'
+            'featured',
+            'project_img',
+            'project_link'
         ]
 
 # PRE Built Django 'Form' from 'form' Module
@@ -24,3 +26,4 @@ class RawShowcaseForm(forms.Form):
     active      =forms.ChoiceField(required=False)
     featured    =forms.BooleanField()
     project_img =forms.ImageField()
+    project_link=forms.URLField()

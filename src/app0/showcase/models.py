@@ -20,4 +20,5 @@ class Showcase(models.Model):
                                 #default=NO
                              )
     featured = models.BooleanField(blank=True, null=True)
-    project_img = models.ImageField(upload_to='static/img/')
+    project_img = models.ImageField(upload_to='img/')
+    project_link= models.URLField(help_text="Sanidhya")

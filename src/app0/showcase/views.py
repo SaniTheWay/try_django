@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -50,9 +51,9 @@ def show_form_view(request):
             # Now the date is good
             print(myform.cleaned_data) #.cleaned_data - only shows the valid data
             # saving the object to the DB
-            myform.save()
             Showcase.objects.create(**myform.cleaned_data) #made "myform.cleaned_data" as an argument for the 'create()' mehthod
             myform = RawShowcaseForm()
+            # return HttpResponse("success")
 
         else:
             print(myform.errors) #.errors - shows the data that is having errors/invalid

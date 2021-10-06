@@ -12,7 +12,7 @@ Model fields know how to represent themselves in the database whereas form field
 <!-- ------------------------------------TESTING----------------------------------------- -->
 <h2>Create your Project</h2><br>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{form.as_p}}
       <input type="submit" name="your_name" value="Submit It!!" />
     </form>
