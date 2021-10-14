@@ -1,6 +1,9 @@
 from django.shortcuts import render
 # httpresponse class added to the view
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+
+# from forms import RawShowcaseForm
 # Create your views here.
 '''
 #What HttpResponse is?
@@ -42,3 +45,15 @@ def contact_view(request, *args, **kwargs):
     print(request.user)
     return render(request, "contact.html", {})
 # return HttpResponse("contact.html")  # string of HTML code
+
+
+@login_required
+def profile_view(request, *args, **kwargs):
+    print(request, args, kwargs)
+    print(request.user)
+    profile_context = {
+        "user_name": request.user,
+
+
+    }
+    return render(request, "profile.html", profile_context)

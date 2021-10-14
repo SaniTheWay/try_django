@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %} {% comment %} {%if check_username
+not "AnonymousUser"%} {% endcomment %}
+
+<h1>Login Page:</h1>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" name="your_name" value="Submit It!!" />
+</form>
+{% comment %} {% else %} {% endcomment %} {% endblock content %}

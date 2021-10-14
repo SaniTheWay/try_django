@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from accounts.views import *
 # from pages import views
 # either doing in this way| we can use the below one:
-from pages.views import home_view, projects_view, about_view
-from showcase.views import showcase_detail_view, show_form_view #show_form_view #jst added the another app view 
+from pages.views import home_view, profile_view, projects_view, about_view
+# show_form_view #jst added the another app view
+from showcase.views import showcase_detail_view, createform_view
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -31,9 +34,16 @@ urlpatterns = [
     path('about/',  about_view,),
     path('contacts/',  about_view,),
     path('showcase/',  showcase_detail_view,),
-    path('create/',  show_form_view,),
+    path('create/', createform_view,),
+    path('profile/', profile_view,),
+    path('register/', register_view,),
+    path('login/', login_view,),
+    path('logout/', logout_view,),
+
+
 
 ]
 if settings.DEBUG:
-    
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

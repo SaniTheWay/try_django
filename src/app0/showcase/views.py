@@ -1,6 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 # importing showcase form to add into the view
 from .forms import RawShowcaseForm, ShowcaseForm
@@ -40,25 +41,29 @@ def showcase_detail_view(request):
 # Pure Django Forms: These are the best one.
 
 
-def show_form_view(request):
+@login_required
+def createform_view(request):
 
-    myform = RawShowcaseForm() #if we get the GET request for the form
-    if request.method =="POST": #by using this, we validate if the request is a "Post" request
-        # <<NOT CLEAR>>to make this form connected to the DB we have to put 
+    myform = RawShowcaseForm()  # if we get the GET request for the form
+    if request.method == "POST":  # by using this, we validate if the request is a "Post" request
+        # <<NOT CLEAR>>to make this form connected to the DB we have to put
         #  <<NOT CLEAR>>"request.POST" as parameter of "RawShowcaseForm()"
         myform = RawShowcaseForm(request.POST, request.FILES)
         if myform.is_valid():
             # Now the date is good
-            print(myform.cleaned_data) #.cleaned_data - only shows the valid data
+            # .cleaned_data - only shows the valid data
+            print(myform.cleaned_data)
             # saving the object to the DB
-            Showcase.objects.create(**myform.cleaned_data) #made "myform.cleaned_data" as an argument for the 'create()' mehthod
+            # made "myform.cleaned_data" as an argument for the 'create()' mehthod
+            Showcase.objects.create(**myform.cleaned_data)
             myform = RawShowcaseForm()
             # return HttpResponse("success")
 
         else:
-            print(myform.errors) #.errors - shows the data that is having errors/invalid
+            # .errors - shows the data that is having errors/invalid
+            print(myform.errors)
     context = {
-        'form':myform
+        'form': myform
     }
     return render(request, 'showcase/create.html', context)
 
