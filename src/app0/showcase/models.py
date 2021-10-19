@@ -17,7 +17,8 @@ class Showcase(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 #     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
-    title = models.CharField(max_length=120, blank=True)  # maxlength *required
+    title = models.CharField(
+        max_length=120)  # maxlength *required
     description = models.TextField(blank=True, null=True)
     active = models.CharField(
         max_length=2,
@@ -30,4 +31,4 @@ class Showcase(models.Model):
     )
     featured = models.BooleanField(blank=True, null=True)
     project_img = models.ImageField(upload_to='img/')
-    project_link = models.URLField(help_text="sanidhya@Sanidhya.com")
+    project_link = models.URLField(help_text="example@example.com")

@@ -23,7 +23,7 @@ from accounts.views import *
 from accounts.views import profile_view, profile_project_view
 from pages.views import home_view, projects_view, about_view
 # show_form_view #jst added the another app view
-from showcase.views import showcase_detail_view, createform_view
+from showcase.views import showcase_detail_view, createModel_view
 from django.contrib.auth import views as auth_views
 
 
@@ -35,7 +35,9 @@ urlpatterns = [
     path('about/',  about_view,),
     path('contacts/',  about_view,),
     path('showcase/',  showcase_detail_view,),
-    path('create/', createform_view,),
+    # path('create/', createform_view,),
+    path('create/', createModel_view,),
+
     path('profile/<str:user>/', profile_view, name='userprofile'),
     # path('profile/(?P<username>.+)/$', profile_view, name='userprofile'),
 

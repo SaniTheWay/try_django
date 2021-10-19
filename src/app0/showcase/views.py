@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 # importing showcase form to add into the view
-from .forms import RawShowcaseForm, ShowcaseForm
+from .forms import ShowcaseForm
 
 # Showcase is a class in models module
 from .models import Showcase
@@ -45,38 +45,42 @@ def showcase_detail_view(request):
 
 
 @login_required
-def createform_view(request, *args, **kwargs):
+def createModel_view(request, *args, **kwargs):
+    form = ShowcaseForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.save()
+        form = ShowcaseForm()
+    # else:
+    #     print(form.errors)
+    #     return HttpResponse("Enter Valid Data.")
 
-    myform = RawShowcaseForm()  # if we get the GET request for the form
-    if request.method == "POST":  # by using this, we validate if the request is a "Post" request
-        # <<NOT CLEAR>>to make this form connected to the DB we have to put
-        #  <<NOT CLEAR>>"request.POST" as parameter of "RawShowcaseForm()"
-        myform = RawShowcaseForm(request.POST, request.FILES)
-        if myform.is_valid():
-            # Now the date is good
-            # .cleaned_data - only shows the valid data
-            print(myform.cleaned_data)
-            # saving the object to the DB
-            # made "myform.cleaned_data" as an argument for the 'create()' mehthod
-            Showcase.objects.create(**myform.cleaned_data)
-            myform = RawShowcaseForm()
-            # return HttpResponse("success")
-
-        else:
-            # .errors - shows the data that is having errors/invalid
-            print(myform.errors)
     context = {
-        'form': myform
+        'form': form
     }
     return render(request, 'showcase/create.html', context)
 
-# def show_form_view(request):
-#     form = ShowcaseForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         form=ShowcaseForm()
 
+# @login_required
+# def createform_view(request, *args, **kwargs):
+#     myform = RawShowcaseForm()  # if we get the GET request for the form
+#     if request.method == "POST":  # by using this, we validate if the request is a "Post" request
+#         # <<NOT CLEAR>>to make this form connected to the DB we have to put
+#         #  <<NOT CLEAR>>"request.POST" as parameter of "RawShowcaseForm()"
+#         myform = RawShowcaseForm(request.POST, request.FILES)
+#         if myform.is_valid():
+#             # Now the date is good
+#             # .cleaned_data - only shows the valid data
+#             print(myform.cleaned_data)
+#             # saving the object to the DB
+#             # made "myform.cleaned_data" as an argument for the 'create()' mehthod
+#             Showcase.objects.create(**myform.cleaned_data)
+#             myform = RawShowcaseForm()
+#             # return HttpResponse("success")
+#         else:
+#             # .errors - shows the data that is having errors/invalid
+#             print(myform.errors)
 #     context = {
-#         'form' : form
+#         'form': myform
 #     }
 #     return render(request, 'showcase/create.html', context)
