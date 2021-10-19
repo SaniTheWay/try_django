@@ -1,7 +1,6 @@
 from django.shortcuts import render
 # httpresponse class added to the view
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
 
 # from forms import RawShowcaseForm
 # Create your views here.
@@ -22,13 +21,14 @@ def home_view(request, *args, **kwargs):
 
 
 def projects_view(request, *args, **kwargs):
-    print(args, kwargs)
+    print("projects page")
     # return HttpResponse("projects.html")  # string of HTML code
     return render(request, "projects.html", {})
 
 
 def about_view(request, *args, **kwargs):
     print(request, args, kwargs)
+    print("about page")
     my_context = {
         'my_name': "sanidhya",
         'my_number': 60205219115,
@@ -41,19 +41,7 @@ def about_view(request, *args, **kwargs):
 
 
 def contact_view(request, *args, **kwargs):
-    print(request, args, kwargs)
+    print("contact page")
     print(request.user)
     return render(request, "contact.html", {})
 # return HttpResponse("contact.html")  # string of HTML code
-
-
-@login_required
-def profile_view(request, *args, **kwargs):
-    print(request, args, kwargs)
-    print(request.user)
-    profile_context = {
-        "user_name": request.user,
-
-
-    }
-    return render(request, "profile.html", profile_context)

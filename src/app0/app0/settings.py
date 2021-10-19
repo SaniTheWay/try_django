@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # name of the app I created
     'showcase',
     'pages',
+    'accounts',
 
 ]
 
@@ -88,6 +89,7 @@ DATABASES = {
     }
 }
 
+# AUTH_USER_MODEL = 'accounts.Userdata'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -107,13 +109,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = "/login"
+LOGIN_REDIRECT = "/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -129,7 +133,6 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 
 # Default primary key field type

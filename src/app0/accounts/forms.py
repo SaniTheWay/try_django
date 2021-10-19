@@ -11,10 +11,14 @@ not_allowed_username = ["abc", "ABC", "RED", "red"]
 
 class RegisterForm(forms.Form):
     username = forms.CharField()
+    first_name = forms.CharField(label='First Name', max_length=20)
+    last_name = forms.CharField(label='Last Name', max_length=20)
+    organization = forms.CharField(label='Organization Name', max_length=50)
+
     email = forms.EmailField()
 
     password1 = forms.CharField(
-        label="password1",
+        label="Password",
         widget=forms.PasswordInput(
             attrs={
                 # these are HTML attributes

@@ -53,6 +53,9 @@
       #ctrcontent {
 
       }
+      #accounts {
+
+      }
     </style>
   </head>
   <body class="container-fluid" style="background-color: bisque">
@@ -64,9 +67,20 @@
         By using this, we can have the whole body as it is, but the content
         inside the block will replaced by that page content 
     -->
-    <div class="row" style="">
+    <div class="row">
+      <div class="col-sm-3" id="accounts">
+        <div class="btn btn-dark btn-sm p-0">
+          <a class="nav-link" href="/login">login</a>
+        </div>
+        <div class="btn btn-light btn-sm p-0">
+          <a class="nav-link" href="/register">Register</a>
+        </div>
+        <div class="btn btn-success btn-sm p-0">
+          <a class="nav-link" href="/logout">logout</a>
+        </div>
+      </div>
       <div
-        class="col-sm-9"
+        class="col-8"
         id="ctrcontent"
         style="
           background: #ccccff;
@@ -80,6 +94,7 @@
         <!-- replace me -->
         {% endblock %}
       </div>
+
       {% comment %}
       <div class="col-sm-3 text-light" id="sdbar">
         This Content will be based on Tabs that will open. Like this is

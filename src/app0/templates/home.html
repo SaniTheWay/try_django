@@ -4,10 +4,9 @@
 
 <h1>Hello WORLD!</h1>
 <p>added template- Home.html</p>
-User Name:
-<h3>{{request.user }}</h3>
-
-{% endblock %}
+{% if request.user.is_authenticated %} Logged in user Name:
+<h3 style="color: white">{{request.user}}</h3>
+{% endif %} {% endblock %}
 <!-- {% block content2 %}
 
             <h1>Hello WORLD!</h1>

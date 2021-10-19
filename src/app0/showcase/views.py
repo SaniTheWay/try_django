@@ -10,6 +10,7 @@ from .forms import RawShowcaseForm, ShowcaseForm
 from .models import Showcase
 
 # Create your views here.
+# ----------------------------CREATE SHOWCASE VIEW-------------------------------------------------------
 
 
 def showcase_detail_view(request):
@@ -40,9 +41,11 @@ def showcase_detail_view(request):
 
 # Pure Django Forms: These are the best one.
 
+# ----------------------------CREATE SHOWCASE VIEW-------------------------------------------------------
+
 
 @login_required
-def createform_view(request):
+def createform_view(request, *args, **kwargs):
 
     myform = RawShowcaseForm()  # if we get the GET request for the form
     if request.method == "POST":  # by using this, we validate if the request is a "Post" request
