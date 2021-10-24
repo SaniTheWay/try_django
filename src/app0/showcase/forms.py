@@ -29,8 +29,8 @@ class ShowcaseForm(forms.ModelForm):
 
     def clean_description(self):
         data = self.cleaned_data.get('description')
-        if any(not_allowed_words in data for not_allowed_words in data):
-            raise forms.ValidationError("bad words are not allowed.")
+        # if any(not_allowed_words in data for not_allowed_words in data):
+        #     raise forms.ValidationError("bad words are not allowed.")
         return data
 
 

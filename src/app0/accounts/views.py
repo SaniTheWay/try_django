@@ -18,17 +18,17 @@ def register_view(request):
     if not request.user.is_authenticated:
         form = RegisterForm(request.POST or None)
         if form.is_valid():
-            username = form.cleaned_data.get("username")
+            email = form.cleaned_data.get("email")
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             organization = form.cleaned_data.get('organization')
-            email = form.cleaned_data.get("email")
+            # email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password1")
             password2 = form.cleaned_data.get("password2")
 
             try:
                 user = User.objects.create_user(
-                    username, email, password, first_name, last_name)
+                    email, password, first_name, last_name)
             except:
                 user = None
         # if user fill the valid data : then 'LOGIN'
@@ -58,10 +58,10 @@ def login_view(request):
     if not request.user.is_authenticated:
         form = LoginForm(request.POST or None)
         if form.is_valid():
-            username = form.cleaned_data.get("username")
+            email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            user = authenticate(request, username=username, password=password)
-            check_username = User.objects.get(username=username)
+            user = authenticate(request, username=email, password=password)
+            # check_username = User.objects.get(email=email)
         # if user fill the valid data : then 'LOGIN'
 
             if user != None:
@@ -79,6 +79,7 @@ def login_view(request):
                 # another way for the same done above is given below:
 
                 request.session['invalid_user'] = 1  # 1 == True
+                return HttpResponse("PAPAPA")
 
         return render(request, "accounts/forms.html", {"form": form})
 
@@ -96,7 +97,7 @@ def logout_view(request):
 
 @login_required(redirect_field_name='projectyverse')
 def profile_view(request, *args, **kwargs):
-    user = User.objects.get(username=request.user)
+    user = User.objects.get(email=request.user)
     # username = request.user,
     profile_context = {
 
