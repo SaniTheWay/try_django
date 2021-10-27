@@ -8,7 +8,3 @@ class Organizations(models.Model):
     location = models.CharField(max_length=150)
     # contest_org
     # projects
-
-    class Meta:
-        # otherwise we get "Tutorial Seriess in admin"
-        verbose_name_plural = "Organizations"

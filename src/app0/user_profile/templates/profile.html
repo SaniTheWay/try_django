@@ -5,11 +5,13 @@
   <div class="row">
     Name:<i> {{profile.first_name}} {{profile.last_name}}</i>
   </div>
-  {% if profile.org_name %}
-  <div class="row">Org: <i>{{profile.org_name}}</i></div>
+  {% if profile.org_key %}
+  <div class="row">Org: <i>{{profile.org_key.org_name}}</i></div>
   {% endif %}
   <div class="row">DoB: <i>{{profile.dob}}</i></div>
+  Available University: {% comment %} {% for organization in organization_list
+  %} {{organization.org_name}}<br />
 
-  {% include "accounts/list.html" %}
+  {%endfor%} {% endcomment %} {%include "accounts/list.html"%}
 </div>
 {% endblock content %}

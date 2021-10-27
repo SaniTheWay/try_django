@@ -19,5 +19,9 @@ class User_profile(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     dob = models.DateField(verbose_name="DoB")
-    org_name = models.ForeignKey(
+    org_key = models.ForeignKey(
         Organizations, on_delete=SET_NULL, null=True, blank=False)
+
+    class Meta:
+        # otherwise we get "Tutorial Seriess in admin"
+        verbose_name_plural = "User Profile"
