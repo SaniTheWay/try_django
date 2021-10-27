@@ -42,9 +42,11 @@ INSTALLED_APPS = [
 
     # own
     # name of the app I created
-    'showcase',
-    'pages',
     'accounts',
+    'organizations',
+    'pages',
+    'showcase',
+    'user_profile',
 
 ]
 

@@ -1,8 +1,8 @@
 from contextlib import nullcontext
 from django.db import models
-from django.db.models.deletion import SET_NULL
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import BooleanField
-
+from django.conf import settings
 from django.conf import settings
 
 # Create your models here.
@@ -14,7 +14,7 @@ class Showcase(models.Model):
     YES = "ys"
     NO = "no"
     IDEA = "ID"
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 #     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     title = models.CharField(

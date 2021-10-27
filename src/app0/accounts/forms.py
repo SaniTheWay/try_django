@@ -16,7 +16,7 @@ not_allowed_username = ["abc", "ABC", "RED", "red"]
 
 class Registermodelform(forms.ModelForm):
     """
-    The default 
+    The default
 
     """
 
@@ -26,7 +26,7 @@ class Registermodelform(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['email', 'password']
 
     def clean_email(self):
         '''
@@ -49,6 +49,14 @@ class Registermodelform(forms.ModelForm):
             self.add_error("password_2", "Your passwords must match")
         return cleaned_data
 
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(Registermodelform, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
+
 # ----------        =====            -----       ---------      --------
 
 
@@ -65,20 +73,20 @@ class UserAdminCreationForm(forms.ModelForm):
         model = User
         fields = ['email']
 
-    def clean(self):
+    def clean_password2(self):
         '''
         Verify both passwords match.
         '''
-        cleaned_data = super().clean()
-        password = cleaned_data.get("password")
-        password_2 = cleaned_data.get("password_2")
+        # cleaned_data = super().clean()
+        password = self.cleaned_data.get("password")
+        password_2 = self.cleaned_data.get("password_2")
         if password is not None and password != password_2:
             self.add_error("password_2", "Your passwords must match")
-        return cleaned_data
+        return password_2
 
     def save(self, commit=True):
         # Save the provided password in hashed format
-        user = super().save(commit=False)
+        user = super(UserAdminCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
@@ -90,11 +98,13 @@ class UserAdminChangeForm(forms.ModelForm):
     the user, but replaces the password field with admin's
     password hash display field.
     """
-    password = ReadOnlyPasswordHashField()
+    password = ReadOnlyPasswordHashField(help_text=("Raw passwords are not stored, so there is no way to see "
+                                                    "this user's password, but you can change the password "
+                                                    "using <a href=\"../password/\">this form</a>."))
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'active', 'admin']
+        fields = ['email', 'password', 'active', 'admin', 'staff']
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.

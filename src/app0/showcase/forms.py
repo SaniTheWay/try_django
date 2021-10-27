@@ -1,18 +1,22 @@
 from decimal import Decimal
 from threading import active_count
 from django import forms
+from django.contrib.auth import get_user_model
 from django.db.backends.base import features
 from django.db.models import fields
 from django.forms.fields import CharField
 from .models import Showcase
 
 not_allowed_words = ["bad", "words", "aren't", "allowed"]
+User = get_user_model()
 
 
 class ShowcaseForm(forms.ModelForm):
+    # user = User.objects.get(request.user)
     class Meta:
         model = Showcase
         fields = [
+            # 'user',
             'title',
             'description',
             'active',

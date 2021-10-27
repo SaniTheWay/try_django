@@ -20,7 +20,9 @@ from django.conf.urls.static import static
 from accounts.views import *
 # from pages import views
 # either doing in this way| we can use the below one:
-from accounts.views import profile_view, profile_project_view
+# from accounts.views import profile_view, profile_project_view
+from user_profile.views import profile_view, profile_project_view
+
 from pages.views import home_view, projects_view, about_view
 # show_form_view #jst added the another app view
 from showcase.views import showcase_detail_view, createModel_view
@@ -41,8 +43,8 @@ urlpatterns = [
     path('profile/<str:user>/', profile_view, name='userprofile'),
     # path('profile/(?P<username>.+)/$', profile_view, name='userprofile'),
 
-    path('register/', register_view,),
-    path('login/', login_view,),
+    path('register/', RegisterView.as_view(),),
+    path('login/', LoginView.as_view(),),
     path('logout/', logout_view,),
     path('projects/', profile_project_view,),
 

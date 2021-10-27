@@ -7,21 +7,21 @@ from django.contrib.auth.models import (
 
 class UserManager(BaseUserManager):
     # only required fields in here
-    def create_user(self, email, password=None, is_active=True, is_staff=False, is_admin=False):
+    def create_user(self, email, password, is_active=True, is_staff=False, is_admin=False):
         if not email:
             raise ValueError("Email pls..")
         if not password:
             raise ValueError("Password pls..")
-        user = self.model(
-            email=self.normalize_email(email)
+        user_obj = self.model(
+            email=self.normalize_email(email),
         )
-        user.set_password(password)
-        user.staff = is_staff
-        user.admim = is_admin
-        user.active = is_active
+        user_obj.set_password(self)
+        user_obj.staff = is_staff
+        user_obj.admim = is_admin
+        user_obj.active = is_active
 
-        user.save(using=self._db)
-        return user
+        user_obj.save(using=self._db)
+        return user_obj
 
     def create_staffuser(self, email, password=None):
         # if not email:
@@ -73,6 +73,9 @@ class User(AbstractBaseUser):
     def get_full_name(self):
         # The user is identified by their email address
         return self.email
+
+    # def set_password(self):
+    #     return self.email
 
     def get_short_name(self):
         # The user is identified by their email address
