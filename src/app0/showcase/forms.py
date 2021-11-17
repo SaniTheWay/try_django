@@ -25,6 +25,10 @@ class ShowcaseForm(forms.ModelForm):
             'project_link',
         ]
 
+    # def form_valid(self, form):
+    #     form.instance.created_by = self.request.user
+    #     return super().form_valid(form)
+
     def clean_title(self):
         data = self.cleaned_data.get('title')
         if len(data) < 3:

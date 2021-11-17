@@ -14,7 +14,8 @@ class Showcase(models.Model):
     YES = "ys"
     NO = "no"
     IDEA = "ID"
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True)
 #     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
 
     title = models.CharField(

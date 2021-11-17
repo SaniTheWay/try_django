@@ -3,7 +3,7 @@
 <ol>
   {%for object in object_list%}
   <div>
-    {%if object.user == request.user%}
+    {%if object.created_by == request.user%}
     <li>{{object.title}}</li>
     {% endif %}
   </div>

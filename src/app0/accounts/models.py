@@ -15,7 +15,7 @@ class UserManager(BaseUserManager):
         user_obj = self.model(
             email=self.normalize_email(email),
         )
-        user_obj.set_password(self)
+        user_obj.set_password(password)
         user_obj.staff = is_staff
         user_obj.admim = is_admin
         user_obj.active = is_active
@@ -27,19 +27,27 @@ class UserManager(BaseUserManager):
         # if not email:
         #     raise ValueError("Email for staff pls..")
         user = self.create_user(
-            email, password=password, is_staff=True
+            email, password=str(password), is_staff=True
         )
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password=None):
+    def create_superuser(self, email, password, is_active=True, is_staff=True, is_admin=True):
         # if not email:
         #     raise ValueError("Email for staff pls..")
-        user = self.create_user(
-            email, password=password, is_staff=True, is_admin=True
+        if not email:
+            raise ValueError("Email pls..")
+        if not password:
+            raise ValueError("Password pls..")
+        user_obj = self.model(
+            email=self.normalize_email(email),
         )
-        user.save(using=self._db)
-        return user
+        user_obj.set_password(password)
+        user_obj.staff = is_staff
+        user_obj.admim = is_admin
+        user_obj.active = is_active
+        user_obj.save(using=self._db)
+        return user_obj
 
 # ----------------- CUSTOM USER MODEL--------------------
 

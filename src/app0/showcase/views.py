@@ -2,7 +2,8 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
 # importing showcase form to add into the view
 from .forms import ShowcaseForm
 
@@ -43,22 +44,37 @@ def showcase_detail_view(request):
 
 # ----------------------------CREATE SHOWCASE VIEW-------------------------------------------------------
 
+# '''
+# Class based views
+# '''
 
-@login_required
-def createModel_view(request, *args, **kwargs):
-    form = ShowcaseForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.save()
-        form = ShowcaseForm()
-    # else:
-    #     print(form.errors)
-    #     return HttpResponse("Enter Valid Data.")
 
-    context = {
-        'form': form
-    }
-    return render(request, 'showcase/create.html', context)
+class createModel_view(LoginRequiredMixin, CreateView):
+    form_class = ShowcaseForm
+    template_name = 'showcase/create.html'
+    success_url = "."
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+
+# @login_required
+# def createModel_view(LoginRequiredMixin, CreateView):
+#     form = ShowcaseForm(request.POST or None, request.FILES or None)
+#     if form.is_valid():
+#         obj = form.save(commit=False)
+#         obj.created_by = request.user
+#         obj.save()
+#         form = ShowcaseForm()
+#     # else:
+#     #     print(form.errors)
+#     #     return HttpResponse("Enter Valid Data.")
+
+#     context = {
+#         'form': form
+#     }
+#     return render(request, 'showcase/create.html', context)
 
 
 # @login_required
